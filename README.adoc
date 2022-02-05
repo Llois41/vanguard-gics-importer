@@ -1,0 +1,25 @@
+= Vanguard GICS Importer
+
+:toc:
+
+== Description
+This tool lets you import the positions Excel files for ETFs provided by Vanguard (see section *Aufschlüsselung der Positionen* e.g. of the https://www.de.vanguard/professionell/anlageprodukte/etf/aktien/9675/ftse-developed-world-ucits-etf-usd-accumulating[Vanguard FTSE Developed World ETF]).
+
+== Goal
+The goal is to make this tool available to get better data quality for custom excel sheets or for tools like https://www.parqet.com/[Parqet].
+
+== How to use
+. Download ETF positions excel from Vanguard (see <<Description>> for an exapmle link)
+. Check out this tool via Git
+. Run `yarn install` in root dir
+. Place your downloaded files in `data` folder
+. Change path in `index.ts` (will be removed, see <<TODO>>)
+. Run `npx ts-node index.ts` in root dir
+
+== TODO
+* specify output format (possible JSON orientating on Parqet data format)
+** maybe generate request and send it to specifiable API endpoint
+* make multiple imports possible (needed?)
+
+
+
