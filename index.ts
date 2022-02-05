@@ -1,6 +1,6 @@
 import xlsx from 'node-xlsx';
-import { GICSIndustries, ParqetExportData, ParqetIndustryData, VanguardInformation, Worksheet } from './types';
-import { isUndefined } from 'util';
+import { ParqetExportData, ParqetIndustryData, VanguardInformation, Worksheet } from './types';
+import { GICSIndustries } from './GICSIndustries';
 
 const VANGUARD_COLUMN_COUNT = 7; //TODO Possible to extract this from type like VanguardInformation.properties.length?
 const VANGUARD_HEADER_ROW = [
@@ -82,6 +82,7 @@ const sumUpDuplicates = (rawIndustryData: ParqetIndustryData[]): ParqetIndustryD
 }
 
 (() => {
+    const isin = 'REPLACEME'
     // read in file
     const workSheetsFromFile = xlsx.parse(`${__dirname}/data/FTSEDevelopedWorldUCITSETFAccumulating.xlsx`);
     // extract data to model
@@ -89,7 +90,7 @@ const sumUpDuplicates = (rawIndustryData: ParqetIndustryData[]): ParqetIndustryD
     // Do mapping
     const rawIndustryData = mapToGICS(positions);
     const industryData = sumUpDuplicates(rawIndustryData);
-    const exportData: ParqetExportData = { isin: 'bla', industryData }
+    const exportData: ParqetExportData = { isin, industryData }
     // send/export data to endpoint
     console.log(exportData);
 })();

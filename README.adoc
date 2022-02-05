@@ -19,6 +19,7 @@ The goal is to make this tool available to get better data quality for custom ex
 == TODO
 * specify output format (possible JSON orientating on Parqet data format)
 ** maybe generate request and send it to specifiable API endpoint
+** API Request uses nested object, JSON representation is `{id: string, share: number}` where id is the GICS number representation of the industry
 * make multiple imports possible (needed?)
 
 
