@@ -1,6 +1,7 @@
 import xlsx from 'node-xlsx';
 import { ParqetExportData, ParqetIndustryData, VanguardInformation, Worksheet } from './types';
 import { GICSIndustries } from './GICSIndustries';
+import { vanguardMatcher } from './helper/matcher';
 
 const VANGUARD_HEADER_ROW = [
     'Ticker',
@@ -50,12 +51,22 @@ const mapToGICS = (positions: VanguardInformation[]): ParqetIndustryData[] => {
     let industryData: ParqetIndustryData[] = [];
 
     for (let position of positions) {
-        const gicsIndustry = GICSIndustries.get(position.sektor);
+        const gicsIndustry = GICSIndustries.get(matchVanguardSectors(position.sektor));
         if (gicsIndustry) {
             industryData.push({ industry: gicsIndustry, percentage: position.prozentDerAssets })
         }
     }
     return industryData;
+}
+
+const matchVanguardSectors = (sektor: string): string => {
+    let gicsIndustry = GICSIndustries.get(sektor);
+    if (!gicsIndustry) {
+        for(let [key, value] of vanguardMatcher.entries()) {
+            return value.find(alias => alias === sektor) ? key : '' ;
+        }
+    }
+    return sektor;
 }
 
 const sumUpDuplicates = (rawIndustryData: ParqetIndustryData[]): ParqetIndustryData[] => {
@@ -89,4 +100,5 @@ const sumUpDuplicates = (rawIndustryData: ParqetIndustryData[]): ParqetIndustryD
     const exportData: ParqetExportData = { isin, industryData }
     // send/export data to endpoint
     console.log(exportData);
+    //console.log(GICSIndustries.entries());
 })();
