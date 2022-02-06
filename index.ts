@@ -63,7 +63,10 @@ const matchVanguardSectors = (sektor: string): string => {
     let gicsIndustry = GICSIndustries.get(sektor);
     if (!gicsIndustry) {
         for(let [key, value] of vanguardMatcher.entries()) {
-            return value.find(alias => alias === sektor) ? key : '' ;
+            const matchingAlias = value.find(alias => alias === sektor) ? key : '' ;
+            if(matchingAlias) {
+                return matchingAlias
+            }
         }
     }
     return sektor;
