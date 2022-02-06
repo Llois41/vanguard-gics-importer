@@ -2,7 +2,6 @@ import xlsx from 'node-xlsx';
 import { ParqetExportData, ParqetIndustryData, VanguardInformation, Worksheet } from './types';
 import { GICSIndustries } from './GICSIndustries';
 
-const VANGUARD_COLUMN_COUNT = 7; //TODO Possible to extract this from type like VanguardInformation.properties.length?
 const VANGUARD_HEADER_ROW = [
     'Ticker',
     'Wertpapiere',
@@ -12,7 +11,7 @@ const VANGUARD_HEADER_ROW = [
     'Marktwert',
     'Anteile',
 ]
-
+const VANGUARD_COLUMN_COUNT = VANGUARD_HEADER_ROW.length;
 
 const parseWorksheet = (worksheet: Worksheet[]): VanguardInformation[] => {
     let insideTable = false;
@@ -51,14 +50,11 @@ const mapToGICS = (positions: VanguardInformation[]): ParqetIndustryData[] => {
     let industryData: ParqetIndustryData[] = [];
 
     for (let position of positions) {
-        // find matching GICS industry for given sektor
         const gicsIndustry = GICSIndustries.get(position.sektor);
-        // push it to array if description matches
         if (gicsIndustry) {
             industryData.push({ industry: gicsIndustry, percentage: position.prozentDerAssets })
         }
     }
-
     return industryData;
 }
 
