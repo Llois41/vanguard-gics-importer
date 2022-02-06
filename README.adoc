@@ -22,6 +22,56 @@ The goal is to make this tool available to get better data quality for custom ex
 . Change path in `index.ts` (will be removed, see <<TODO>>)
 . Run `npx ts-node index.ts` in root dir
 
+=== Output
+Using the given data example representing the https://www.de.vanguard/professionell/anlageprodukte/etf/aktien/9675/ftse-developed-world-ucits-etf-usd-accumulating[Vanguard FTSE Developed World ETF] this tool will print the following output:
+
+```
+{
+  isin: 'REPLACEME',
+  industryData: [
+    { industry: 452020, percentage: 5.118 },
+    { industry: 451030, percentage: 7.302 },
+    { industry: 251020, percentage: 2.535 },
+    { industry: 402010, percentage: 1.12 },
+    { industry: 352020, percentage: 5.667 },
+    { industry: 303020, percentage: 1.507 },
+    { industry: 302020, percentage: 1.494 },
+    { industry: 401010, percentage: 5.108 },
+    { industry: 502020, percentage: 0.929 },
+    { industry: 502010, percentage: 0.609 },
+    { industry: 252030, percentage: 0.574 },
+    { industry: 551010, percentage: 1.685 },
+    { industry: 151010, percentage: 1.061 },
+    { industry: 252010, percentage: 0.337 },
+    { industry: 203010, percentage: 0.483 },
+    { industry: 302030, percentage: 0.595 },
+    { industry: 201050, percentage: 1.537 },
+    { industry: 352010, percentage: 1.21 },
+    { industry: 402030, percentage: 1.047 },
+    { industry: 201010, percentage: 1.217 },
+    { industry: 451020, percentage: 1.241 },
+    { industry: 302010, percentage: 0.622 },
+    { industry: 255040, percentage: 0.535 },
+    { industry: 151040, percentage: 1.1 },
+    { industry: 202020, percentage: 0.194 },
+    { industry: 551030, percentage: 0.557 },
+    { industry: 201030, percentage: 0.23 },
+    { industry: 251010, percentage: 0.419 },
+    { industry: 601010, percentage: 0.137 },
+    { industry: 151030, percentage: 0.212 },
+    { industry: 151020, percentage: 0.067 },
+    { industry: 253010, percentage: 0.302 },
+    { industry: 551050, percentage: 0.085 },
+    { industry: 203020, percentage: 0.073 },
+    { industry: 101020, percentage: 0.013 }
+  ]
+}
+
+```
+
+IMPORTANT: I'm still adding the mapping of descriptions used by Vanguard to the GICS Industry descriptions, so the output at this time is just a fraction of the final result.
+
+
 == TODO
 * Extend matching by creating a mapping table (support needed)
 * specify output format (possible JSON orientating on Parqet data format)

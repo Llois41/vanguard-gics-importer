@@ -103,5 +103,4 @@ const sumUpDuplicates = (rawIndustryData: ParqetIndustryData[]): ParqetIndustryD
     const exportData: ParqetExportData = { isin, industryData }
     // send/export data to endpoint
     console.log(exportData);
-    //console.log(GICSIndustries.entries());
 })();
