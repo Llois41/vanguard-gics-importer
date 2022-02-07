@@ -56,6 +56,7 @@ vanguardMatcher.set(GICSIndustryNames.CONSTRUCTION_MATERIALS, [
 vanguardMatcher.set(GICSIndustryNames.CHEMICALS, [
     'Chemicals and Synthetic Fibers',
     'Chemicals: Diversified',
+    'Fertilizers',
 ])
 
 vanguardMatcher.set(GICSIndustryNames.TEXTILES_APPAREL_AND_LUXURY_GOODS, [
@@ -76,6 +77,7 @@ vanguardMatcher.set(GICSIndustryNames.IT_SERVICES, [
 
 vanguardMatcher.set(GICSIndustryNames.CONSTRUCTION_AND_ENGINEERING, [
     'Construction',
+    'Engineering and Contracting Services',
 ])
 
 vanguardMatcher.set(GICSIndustryNames.HOUSEHOLD_DURABLES, [
@@ -105,3 +107,45 @@ vanguardMatcher.set(GICSIndustryNames.INDUSTRIAL_CONGLOMERATES, [
 vanguardMatcher.set(GICSIndustryNames.EQUITY_REAL_ESTATE_INVESTMENT_TRUSTS, [
     'Diversified REITs',
 ])
+
+vanguardMatcher.set(GICSIndustryNames.FOOD_AND_STAPLES_RETAILING, [
+    'Drug Retailers',
+])
+
+vanguardMatcher.set(GICSIndustryNames.DIVERSIFIED_CONSUMER_SERVICES, [
+    'Education Services',
+])
+
+vanguardMatcher.set(GICSIndustryNames.ELECTRICAL_EQUIPMENT, [
+    'Electrical Components',
+])
+
+vanguardMatcher.set(GICSIndustryNames.ELECTRONIC_EQUIPMENT_INSTRUMENTS_AND_COMPONENTS, [
+    'Electronic Components',
+])
+
+vanguardMatcher.set(GICSIndustryNames.ENTERTAINMENT, [
+    'Electronic Entertainment',
+])
+
+vanguardMatcher.set(GICSIndustryNames.MACHINERY, [
+    'Electronic Equipment: Pollution Control',
+])
+
+vanguardMatcher.set(GICSIndustryNames.COMMERCIAL_SERVICES_AND_SUPPLIES, [
+    'Electronic Office Equipment',
+])
+
+vanguardMatcher.set(GICSIndustryNames.FOOD_PRODUCTS, [
+    'Farming, Fishing, Ranching and Plantatio',
+    // first entry is used by Vanguard, but it looks like a mistake so this entry backups it, if they fix the exports
+    'Farming, Fishing, Ranching and Plantation',
+])
+
+
+
+
+
+
+
+
