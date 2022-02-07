@@ -1,5 +1,5 @@
 import xlsx from 'node-xlsx';
-import { ParqetExportData, ParqetIndustryData, VanguardInformation, Worksheet } from './types';
+import { ParqetIndustryData, ParqetIndustryDiff, ParqetSuggestion, VanguardInformation, Worksheet } from './types';
 import { GICSIndustries } from './GICSIndustries';
 import { vanguardMatcher } from './helper/matcher';
 
@@ -53,7 +53,7 @@ const mapToGICS = (positions: VanguardInformation[]): ParqetIndustryData[] => {
     for (let position of positions) {
         const gicsIndustry = GICSIndustries.get(matchVanguardSectors(position.sektor));
         if (gicsIndustry) {
-            industryData.push({ industry: gicsIndustry, percentage: position.prozentDerAssets })
+            industryData.push({ id: gicsIndustry, share: position.prozentDerAssets })
         }
     }
     return industryData;
@@ -74,21 +74,40 @@ const matchVanguardSectors = (sektor: string): string => {
 
 const sumUpDuplicates = (rawIndustryData: ParqetIndustryData[]): ParqetIndustryData[] => {
     let industryData: ParqetIndustryData[] = [];
-    const tempData = new Map<number, number>();
+    const tempData = new Map<string, number>();
 
-    for (let { industry, percentage } of rawIndustryData) {
-        const industryPercentage = tempData.get(industry);
+    for (let { id, share } of rawIndustryData) {
+        const industryPercentage = tempData.get(id);
         if (industryPercentage) {
-            tempData.set(industry, industryPercentage + percentage);
+            tempData.set(id, industryPercentage + share);
         } else {
-            tempData.set(industry, percentage);
+            tempData.set(id, share);
         }
     }
-    tempData.forEach((percentage, industry) => {
-        industryData.push({industry, percentage: +percentage.toFixed(3)});
+    tempData.forEach((share, id) => {
+        industryData.push({id, share: +share.toFixed(3)});
     })
 
     return industryData;
+}
+
+const buildParqetSuggestionPayload = (industryData: ParqetIndustryData[], security: string): ParqetSuggestion => {
+    let diff: ParqetIndustryDiff[] = [];
+
+    for(let entry of industryData) {
+        diff.push({
+            op: 'add',
+            path: '/industries/-',
+            value: entry,
+        })
+    }
+    return {
+        suggestion: {
+            jsonpatchFormat: true,
+            security,
+            diff,
+        }
+    };
 }
 
 (() => {
@@ -100,7 +119,7 @@ const sumUpDuplicates = (rawIndustryData: ParqetIndustryData[]): ParqetIndustryD
     // Do mapping
     const rawIndustryData = mapToGICS(positions);
     const industryData = sumUpDuplicates(rawIndustryData);
-    const exportData: ParqetExportData = { isin, industryData }
     // send/export data to endpoint
-    console.log(exportData);
+    const payload = buildParqetSuggestionPayload(industryData, isin);
+    console.info(JSON.stringify(payload, null, " "));
 })();

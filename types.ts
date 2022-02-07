@@ -9,13 +9,23 @@ export type VanguardInformation = {
 }
 
 export type ParqetIndustryData = {
-    industry: number,
-    percentage: number,
+    id: string,
+    share: number,
 }
 
-export interface ParqetExportData {
-    isin: string, //TODO maybe find a type or validate at least
-    industryData: ParqetIndustryData[],
+export interface ParqetIndustryDiff {
+    op: 'add',
+    path: '/industries/-',
+    value: ParqetIndustryData,
+}
+
+export interface ParqetSuggestion {
+    suggestion: {
+        jsonpatchFormat: boolean,
+        security: string,
+        diff: ParqetIndustryDiff[],
+    }
+
 }
 
 export type Worksheet = { name: string, data: string[][] }
