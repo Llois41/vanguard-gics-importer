@@ -119,7 +119,8 @@ const buildParqetSuggestionPayload = (industryData: ParqetIndustryData[], securi
     // Do mapping
     const rawIndustryData = mapToGICS(positions);
     const industryData = sumUpDuplicates(rawIndustryData);
+    console.log(industryData);
     // send/export data to endpoint
     const payload = buildParqetSuggestionPayload(industryData, isin);
-    console.info(JSON.stringify(payload, null, " "));
+    //console.info(JSON.stringify(payload, null, " "));
 })();

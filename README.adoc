@@ -13,12 +13,19 @@ toc::[]
 
 == Description
 
+=== New Approach
+
+The new approach will be to use https://eresearch.fidelity.com/eresearch/evaluate/snapshot.jhtml?symbols=AAPL[Fidelity Website] as a source. Unfortunately there's no public API according to their customer service so this data has to be crawled.
+
+IMPORTANT: This README will be updated in the next days if there's a plan on how to tackle the challenge of the crawler for Fidelity.
+
 === TLDR
 Import ETF `.xlsx`-files provided by Vanguard and receive the distribution of their shares grouped by https://www.msci.com/documents/1296102/11185224/GICS+Methodology+2020.pdf/9caadd09-790d-3d60-455b-2a1ed5d1e48c?t=1578405935658[Global Industry Classification Standard (GICS)] Industries  by MSCI.
 
 === What Is This Tool?
 
 This tool lets you import the positions Excel files for ETFs provided by Vanguard (see section *Aufschlüsselung der Positionen* e.g. of the https://www.de.vanguard/professionell/anlageprodukte/etf/aktien/9675/ftse-developed-world-ucits-etf-usd-accumulating[Vanguard FTSE Developed World ETF]). After importing, it will match the given data of the "Sektor" column against the Industries of the https://www.msci.com/documents/1296102/11185224/GICS+Methodology+2020.pdf/9caadd09-790d-3d60-455b-2a1ed5d1e48c?t=1578405935658[GICS].
+
 
 == Goal
 The goal is to make this tool available to get better data quality for custom excel sheets or for tools like https://www.parqet.com/[Parqet].
@@ -337,3 +344,4 @@ IMPORTANT: I'm still adding the mapping of descriptions used by Vanguard to the 
 * specify output format (possible JSON orientating on Parqet data format)
 ** maybe generate request and send it to specifiable API endpoint
 * make multiple imports possible (needed?)
+

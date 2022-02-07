@@ -61,6 +61,7 @@ vanguardMatcher.set(GICSIndustryNames.CHEMICALS, [
 
 vanguardMatcher.set(GICSIndustryNames.TEXTILES_APPAREL_AND_LUXURY_GOODS, [
     'Clothing and Accessories',
+    'Footwear',
 ])
 
 vanguardMatcher.set(GICSIndustryNames.OIL_GAS_AND_CONSUMABLE_FUELS, [
@@ -110,6 +111,7 @@ vanguardMatcher.set(GICSIndustryNames.EQUITY_REAL_ESTATE_INVESTMENT_TRUSTS, [
 
 vanguardMatcher.set(GICSIndustryNames.FOOD_AND_STAPLES_RETAILING, [
     'Drug Retailers',
+    'Food Retailers and Wholesalers',
 ])
 
 vanguardMatcher.set(GICSIndustryNames.DIVERSIFIED_CONSUMER_SERVICES, [
@@ -134,12 +136,18 @@ vanguardMatcher.set(GICSIndustryNames.MACHINERY, [
 
 vanguardMatcher.set(GICSIndustryNames.COMMERCIAL_SERVICES_AND_SUPPLIES, [
     'Electronic Office Equipment',
+    'Forms and Bulk Printing Services',
 ])
 
 vanguardMatcher.set(GICSIndustryNames.FOOD_PRODUCTS, [
     'Farming, Fishing, Ranching and Plantatio',
     // first entry is used by Vanguard, but it looks like a mistake so this entry backups it, if they fix the exports
     'Farming, Fishing, Ranching and Plantation',
+])
+
+vanguardMatcher.set(GICSIndustryNames.PAPER_AND_FOREST_PRODUCTS, [
+    'Forestry',
+    'Paper',
 ])
 
 
