@@ -145,7 +145,8 @@ const getSharesData = (sharesInformation: VanguardInformation[]) => {
 
 const getGicsIndustriesForShares = async (positionsWithShares: { ticker: string; share: number }[]) => {
     let res = [] as ParqetIndustryData[];
-    for (let position of positionsWithShares) {
+
+    const data = await Promise.all(positionsWithShares.map(async (position) => {
         const symbol = position.ticker;
         const reqUrl = `${FIDELITY_BASE_URL}${symbol}`;
         try {
@@ -155,18 +156,21 @@ const getGicsIndustriesForShares = async (positionsWithShares: { ticker: string;
             if (industry) {
                 const gicsIndustryId = GICSIndustries.get(industry);
                 if (gicsIndustryId) {
-                    res.push({ id: gicsIndustryId, share: position.share });
+                    return { id: gicsIndustryId, share: position.share };
+                    //res.push({ id: gicsIndustryId, share: position.share });
                 } else {
                     console.error(`Could not find GICS Industry for ${industry} on share ${position.ticker}`);
                 }
             } else {
                 console.error('No industry found for ', symbol);
             }
-
         } catch (e) {
             console.error(`Error for Symbol ${symbol}: ${e}`);
         }
-    }
+    }));
+
+    console.log(data);
+
     return res;
 };
 
